@@ -1,0 +1,31 @@
+#!/usr/bin/ruby
+def count(arg)
+    average = 0
+    arg.each do |name, grade|
+        average += grade
+    end 
+    print "Average mark for the CSCI 101 class: #{average / 4}\n"
+end
+
+def count102(arg)
+    average = 0
+    arg.each do |name, grade|
+        average += grade
+    end
+    print "Average mark for the CSCI 102 class: #{average / 4}\n"
+end
+
+class_csci101 = {
+    "margot" => 17,
+    "june" => 8,
+    "colin" => 14,
+    "lewis" => 9
+}
+class_csci102 = {
+    "quentin" => 16,
+    "julie" => 15,
+    "mark" => 8,
+    "stephanie" => 13
+}
+count class_csci101
+count102 class_csci102
