@@ -1,0 +1,12 @@
+Client / server
+HTTP verbs GET, POST, PUT, DELETE
+Ruby vs Rails
+ 
+require 'net/http'
+Net::HTTP.get('btc42.42.us.org', '/')
+ 
+curl btc42.42.us.org
+curl -H "user_token: G7JtzUbXTMJx8xWizgDa" http://btc42.42.us.org/value.json\?user_token=G7JtzUbXTMJx8xWizgDa
+curl -H "user_token: G7JtzUbXTMJx8xWizgDa" http://btc42.42.us.org/value.json\?user_token\=G7JtzUbXTMJx8xWizgDa | json_pp
+curl --trace - -H "user_token: G7JtzUbXTMJx8xWizgDa" http://btc42.42.us.org/value.json\?user_token=G7JtzUbXTMJx8xWizgDa
+curl -H "Content-Type: application/json" -X POST -d '{"user_token":"G7JtzUbXTMJx8xWizgDa","btc_amount":"0","kind":"buy"}' http://btc42.42.us.org/exchange
