@@ -92,10 +92,10 @@ end
 def check_for_winner 
   win_combos.each do |combos| 
     if combos[0] == "O" && combos[1] == "O" && combos[2] == "O"
-      puts "Computer wins! Good luck next time."
+      puts "Computer wins! Nice try tho."
       exit 
     elsif combos[0] == "X" && combos[1] == "X" && combos[2] == "X"
-      puts "You win! Good job!"
+      puts "You won...how is that possible!"
       exit
     #else
       #puts "Tie! Enter q to quit game."
@@ -104,9 +104,9 @@ def check_for_winner
 end
 
 def start_game
-  puts "Welcome to my Tic Tac Toe game!"
+  puts "Welcome to Neil's Tic Tac Toe game!"
   puts "To place your X on the grid, enter the location (ex--a1, b3)."
-  puts "To quit, enter q at any time"
+  puts "If you rage too hard, you can enter q to quit :)"
 end
 
 def run_game
