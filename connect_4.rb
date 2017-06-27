@@ -1,7 +1,7 @@
 #!/usr/bin/ruby
 
 print "Welcome to connect 4.\n"
-print "This is a game against the computer, and all you have to do is get 4 in a row before it does.\nGood luck!\n"
+print "This is a game against the computer, and all you have to do is get 4 in a row before it does.\nYou will be red and it will be blue.\nGood luck!\n"
 class Board
 
   def initialize(initial_board_state = nil)
@@ -91,7 +91,6 @@ class Computer
         board.available_moves.each do |possible_move|
             test_board = board.drop_piece possible_move, player
       score = minimax(test_board, 5, -1_000, 1_000, false)
-      puts "Move #{possible_move + 1} has score #{score}"
       if score > best_score
         best_move = possible_move
         best_score = score
@@ -162,12 +161,14 @@ end
 
 board = Board.new
 
+require 'colorize'
+
 loop do
     board.print
     col = request_user_move
-    board = board.drop_piece col, "X"
+    board = board.drop_piece col, "●".red
     break if board.winner
-    board = board.drop_piece Computer.new("0").pick_move(board), "0"
+    board = board.drop_piece Computer.new("0").pick_move(board), "●".blue
     break if board.winner
 end
 
