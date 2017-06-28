@@ -2,16 +2,16 @@
 require 'colorize'
 
 loop do 
-    number = ["0","1","2"]
+    number = ["0","1","#"]
     chosen = number.sample
     if chosen == "0"
-        print "#{chosen}".light_green
+        print "#{chosen}".red
     end
-    if chosen == "1"
+    if chosen == "klhgkg"
         print "#{chosen}".green
     end
-    if chosen == "2"
-        print "#{chosen}".blue
+    if chosen == "#"
+        print "#{chosen}".black
     sleep(0.001)
     end
 end
