@@ -68,34 +68,34 @@ else
     scan_value26 = words.scan(newarray[25]).length
     puts ""
     puts ""
-    print newarray
-    puts scan_value1
-    puts scan_value2
-    puts scan_value3
-    puts scan_value4
-    puts scan_value5
-    puts scan_value6
-    puts scan_value7
-    puts scan_value8
-    puts scan_value9
-    puts scan_value10
-    puts scan_value11
-    puts scan_value12
-    puts scan_value13
-    puts scan_value14
-    puts scan_value15
-    puts scan_value16
-    puts scan_value17
-    puts scan_value18
-    puts scan_value19
-    puts scan_value20
-    puts scan_value21
-    puts scan_value22
-    puts scan_value23
-    puts scan_value24
-    puts scan_value25
-    puts scan_value26
+    
 
-
-
+    frequency {
+        newarray[0] => scan_value1,
+        newarray[1] => scan_value2,
+        newarray[2] => scan_value3,
+        newarray[3] => scan_value4,
+        newarray[4] => scan_value5,
+        newarray[5] => scan_value6,
+        newarray[6] => scan_value7,
+        newarray[7] => scan_value8,
+        newarray[8] => scan_value9,
+        newarray[9] => scan_value10,
+        newarray[10] => scan_value11,
+        newarray[11] => scan_value12,
+        newarray[12] => scan_value13,
+        newarray[13] => scan_value14,
+        newarray[14] => scan_value15,
+        newarray[15] => scan_value16,
+        newarray[16] => scan_value17,
+        newarray[17] => scan_value18,
+        newarray[18] => scan_value19,
+        newarray[19] => scan_value20,
+        newarray[20] => scan_value21,
+        newarray[21] => scan_value22,
+        newarray[22] => scan_value23,
+        newarray[23] => scan_value24,
+        newarray[24] => scan_value25,
+        newarray[25] => scan_value26,
+    }
 end
