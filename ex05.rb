@@ -1,7 +1,15 @@
-capitals = []
-
+new_array = []
 File.open("capitals.txt").each do |line|
-    capitals << line
+    new_array << line
+    new_hash = Hash[new_array.map {|key, value| [key, value]}]
+    puts new_hash
 end
-capitals = capitals.flatten
-puts capitals[10]
+
+loop do
+    puts "Ready:"
+    state = gets
+    puts state
+    if state == "Done"
+        exit!
+    end
+end
