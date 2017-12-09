@@ -1,189 +1,180 @@
-#!/usr/bin/ruby
 require 'colorize'
-puts "Welcome to Hangman."
-puts "I have chosen a random word, and it is your job to guess it."
-puts "Enter Ctrl+C to exit."
-puts "*PLEASE DO NOT TYPE A LETTER MORE THAN ONCE OR ENTER ANY CAPITALS AS IT WILL MESS UP THE GAME*".yellow
 
-words = ["sting", "ruby", "racket", "playgrounds", "neil", "swift", "raise", "quilt"]
-$chosen_word = words.sample
+dictionary = File.open('dictionary.txt')
+dictionary_array = dictionary.readlines
+dictionary_array.shuffle!
+
+# Intro text, wait for user to type 'start'
 
 
-def print_board
 
-    if $chosen_word.length == 4
-        puts "_____  _____  _____  _____"
-    end
 
-    if $chosen_word.length == 5
-        puts "_____  _____  _____  _____  _____"
-    end
 
-    if $chosen_word.length == 6
-        puts "_____  _____  _____  _____  _____  _____"
-    end
 
-    if $chosen_word.length == 11
-        puts "_____  _____  _____  _____  _____  _____  _____  _____  _____  _____  _____ "
-    end
 
+#clears terminal screen
+puts "\e[H\e[2J"
+
+
+
+
+
+
+
+
+
+puts "\n<<< Terminal Hangman >>>\n\n"
+print "Type ", "start".yellow, " to begin a new game.\n\n"
+turn = 0
+rematch = nil
+
+print "> "
+user_word = gets.chomp.downcase.strip
+until user_word == "start"
+print "> "
+user_word = gets.chomp.downcase.strip
 end
 
+puts "Generating your word...\n\n"
+
+# Loop the game until the user types 'quit'
+until rematch == "quit"
+
+  # Get a word, put the chars into an array, make an array of letters remaining
+  dictionary_array.shuffle!
+  word = dictionary_array[17]
+  word_array = word.chars.to_a
+  letters_remaining = dictionary_array[17].chars.to_a
+  # Get rid of \r\n
+  word_array.delete_at(word_array.length-1)
+  letters_remaining.delete_at(letters_remaining.length-1)
 
 
-def usr_input
-    if $chosen_word == "neil" 
-        available_letters = 4
-        while available_letters > 0
-            puts "What is your guess?"
-            guess = gets.chomp
-            if (guess == "n") || (guess == "e") || (guess == "l") || (guess == "i")
-                available_letters = available_letters - 1
-                puts "Good guess".blue
-                puts "#{available_letters} more!".blue
-            else 
-                puts "Try again".red
-            end
-            if available_letters == 0
-                puts "SUCCESS!".green
-            end            
-        end
-    end
+# Initialize Alphabet and Lives
+alphabet = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", 
+"L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
+lives = 7  
+  
+  # If it is the first turn OR they choose to rematch
+  if rematch == "new" || turn == 0
+  word_array.each do |x|
+    print "_ "
+  end
+  puts "\n\n"
 
-    if $chosen_word == "ruby" 
-        available_letters = 4
-        while available_letters > 0
-            puts "What is your guess?"
-            guess = gets.chomp
-            if (guess == "r") || (guess == "u") || (guess == "b") || (guess == "y")
-                available_letters = available_letters - 1
-                puts "Good guess".blue
-                puts "#{available_letters} more!".blue
-            else 
-                puts "Try again".red
-            end
-            if available_letters == 0
-                puts "SUCCESS!".green
-            end            
-        end
-    end 
+  puts "Word generated!\n"
+  puts "Lives Remaining: #{lives}"
+  puts "Letters Remaining: "
 
-    if $chosen_word == "playgrounds" 
-        available_letters = 11
-        while available_letters > 0
-            puts "What is your guess?"
-            guess = gets.chomp
-            if (guess == "p") || (guess == "l") || (guess == "a") || (guess == "y") || (guess == "g") || (guess == "r") || (guess == "o") || (guess == "u") || (guess == "n") || (guess == "d") || (guess == "s")
-                available_letters = available_letters - 1
-                puts "Good guess".blue
-                puts "#{available_letters} more!".blue
-            else 
-                puts "Try again".red
-            end
-            if available_letters == 0
-                puts "SUCCESS!".green
-            end            
-        end
-    end    
+  alphabet.each do |x|
+    print "#{x} "
+  end
+  puts "\n\n"
 
-    if $chosen_word == "sting" 
-        available_letters = 5
-        while available_letters > 0
-            puts "What is your guess?"
-            guess = gets.chomp
-            if (guess == "s") || (guess == "t") || (guess == "i") || (guess == "n") || (guess == "g")
-                available_letters = available_letters - 1
-                puts "Good guess".blue
-                puts "#{available_letters} more!".blue
-            else 
-                puts "Try again".red
-            end
-            if available_letters == 0
-                puts "SUCCESS!".green
-            end            
-        end
-    end   
-    if $chosen_word == "racket" 
-        available_letters = 6
-        while available_letters > 0
-            puts "What is your guess?"
-            guess = gets.chomp
-            if (guess == "r") || (guess == "a") || (guess == "c") || (guess == "k") || (guess == "e") || (guess == "t")
-                available_letters = available_letters - 1
-                puts "Good guess".blue
-                puts "#{available_letters} more!".blue
-            else 
-                puts "Try again".red
-            end
-            if available_letters == 0
-                puts "SUCCESS!".green
-            end
-        end
-    end        
+  puts "Guess a letter: "
+  print "> "
+  guess = gets.chomp.upcase.strip
 
-    if $chosen_word == "swift" 
-        available_letters = 5
-        while available_letters > 0
-            puts "What is your guess?"
-            guess = gets.chomp
-            if (guess == "s") || (guess == "t") || (guess == "i") || (guess == "f") || (guess == "w")
-                available_letters = available_letters - 1
-                puts "Good guess".blue
-                puts "#{available_letters} more!".blue
-            else 
-                puts "Try again".red
-            end
-            if available_letters == 0
-                puts "SUCCESS!".green
-            end            
-        end
-    end   
+  until alphabet.include?(guess) == true
+    puts "INVALID ENTRY"
+    puts "Please guess from the available letters"
+    print "> "
+    guess = gets.chomp.upcase.strip
+  end
 
-    if $chosen_word == "quilt" 
-        available_letters = 5
-        while available_letters > 0
-            puts "What is your guess?"
-            guess = gets.chomp
-            if (guess == "q") || (guess == "t") || (guess == "i") || (guess == "u") || (guess == "l")
-                available_letters = available_letters - 1
-                puts "Good guess".blue
-                puts "#{available_letters} more!".blue
-            else 
-                puts "Try again".red
-            end
-            if available_letters == 0
-                puts "SUCCESS!".green
-            end            
+  # After the first guess, only break if lives are 0 or no letters remaining
+  until lives == 0 || letters_remaining == []
+  
+    if word_array.include?(guess.downcase) == true
+    
+      puts "\n\n"
+      alphabet.delete(guess)  
+      letters_remaining.delete(guess.downcase)
+    
+      if letters_remaining == []
+        break
+      end
+  
+      word_array.each do |x|
+        if alphabet.include?(x.upcase) == true
+          print "_ "
+        else 
+          print "#{x.upcase} "
         end
-    end 
+      end
+    
+      puts "\n\n"
+      puts "Lives Remaining: #{lives}"
+      puts "Letters Remaining: "
 
-    if $chosen_word == "raise" 
-        available_letters = 5
-        while available_letters > 0
-            puts "What is your guess?"
-            guess = gets.chomp
-            if (guess == "s") || (guess == "r") || (guess == "i") || (guess == "a") || (guess == "e")
-                available_letters = available_letters - 1
-                puts "Good guess".blue
-                puts "#{available_letters} more!".blue
-            else 
-                puts "Try again".red
-            end
-            if available_letters == 0
-                puts "SUCCESS!".green
-            end            
+      alphabet.each do |x|
+        print "#{x} "
+      end
+      puts "\n\n"
+  
+      puts "Guess a letter: "
+      print "> "
+      guess = gets.chomp.upcase.strip
+   
+      until alphabet.include?(guess) == true
+         puts "INVALID ENTRY"
+         puts "Please guess from the available letters"
+         print "> "
+         guess = gets.chomp.upcase.strip
+      end
+  
+    elsif lives > 1
+      lives -= 1
+  
+      puts "WRONG!\n\n"
+      alphabet.delete(guess)
+  
+      word_array.each do |x|
+        if alphabet.include?(x.upcase) == true
+          print "_ "
+        else 
+          print "#{x.upcase} "
         end
-    end             
+      end
+    
+      puts "\n\n"
+      puts "Lives Remaining: #{lives}"
+      puts "Letters Remaining: "
+
+      alphabet.each do |x|
+        print "#{x} "
+      end
+      puts "\n\n"
+  
+      puts "Guess a letter: "
+      print "> "
+      guess = gets.chomp.upcase.strip
+   
+      until alphabet.include?(guess) == true
+         puts "INVALID ENTRY"
+         puts "Please guess from the available letters"
+         print "> "
+         guess = gets.chomp.upcase.strip
+      end
+  
+    else 
+      lives -= 1
+      puts "YOU LOSE!\n"
+      puts "The word was #{word_array.to_s.upcase}"
+    end  
+  
+  end # of first guess until
+
+  if letters_remaining == []
+    puts "CONGRATULATIONS! You got the word #{word_array.to_s.upcase}" 
+  end   
+
+  turn += 1
+  puts "Type \"new\" to play again, type \"quit\" to exit"
+  print "> "
+  rematch = gets.chomp.downcase.strip
+  else
+  puts "Please type either \"new\" OR \"quit\""
+  end
+
 end
-
-def success_end
-    puts $chosen_word.upcase.yellow
-end
-
-def run_game
-    print_board
-    usr_input
-    success_end
-end
-
-run_game
